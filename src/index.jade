@@ -1,0 +1,363 @@
+!!! 5
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Building Mobile Web Applications using Mozilla's Brick Library
+
+    link(rel='stylesheet', type='text/css', href='http://fonts.googleapis.com/css?family=Pathway+Gothic+One|Noto+Serif:400,400italic')
+    link(rel='stylesheet', type='text/css', href='bower_components/prism/themes/prism-coy.css')
+    link(rel='stylesheet', type='text/css', href='bower_components/prism/plugins/line-numbers/prism-line-numbers.css')
+    link(rel='stylesheet', type='text/css', href='styles/main.css')
+
+  body
+
+    article
+
+      // Intro talk & self
+      section.cover
+        img(src="img/lego1.gif")
+        h1.tint Building Mobile Web Applications With Brick
+        
+      section.cover
+        img(src="img/vancouver-rain.gif")
+        div.tint
+          h2 I'm Angelina Fabbro
+          h2 I'm from Vancouver, Canada
+          h2 @angelinamagnum
+          h2 follow for slides &amp; pandavangelism
+
+      section.cover
+        img(src="img/firefox.jpg")
+
+      // Intro web components - terminology & problems they solve
+
+      section.white
+        h2 Web Components are the new HTML 5
+        img(src="img/webcomponents.png")
+
+      section.white
+        h2 Technologies:
+        ul
+          li
+            h3 HTML Imports
+          li
+            h3 Shadow DOM
+          li
+            h3 HTML Templates
+          li
+            h3 Custom Elements
+
+      section.white
+        h2 What is a component?
+        img(src="img/screws.jpg")
+
+      section
+        h2 Black Boxes
+        img(src="img/resistors.jpg")
+
+      section
+        img(src="img/doorbell.jpg")
+
+      section
+        h2 Why build custom elements?
+
+      section
+        h2 Benefits
+        ul
+          li
+            h3 Encapsulation
+          li
+            h3 Reusability
+          li
+            h3 Robustness
+          li
+            h3 Expressiveness
+
+      section.white
+        h2 What is Brick?
+        ul
+          li 
+            h3 Custom elements built using X-Tags
+        li
+          h3 Mobile app focus
+
+      section.white
+        h2 So... what is/are X-Tags?
+        ul
+          li
+            h3 Enables creation of custom elements 
+          li 
+            h3 Does so in a way that is similar to web components as spec'd by the W3C
+
+      section
+        h2 How is Brick different from other web components frameworks?
+        ul
+          li
+            h3 Brick is a small library that enables the creation of custom DOM Elements
+          li
+            h3 It is not a framework - only select or create the components you need a la carte
+
+      section
+        h2 A Small Application with using Brick
+        h3 http://github.com/afabbro/simple-brick-demo
+
+      section
+        h2 Step 1: Add Some Bricks!
+
+      section
+        code.language-markup
+          pre.
+            <!DOCTYPE html>
+            <html>
+              <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width">
+                <link rel="stylesheet" type="text/css" href="css/brick-1.0beta5.css"/>
+                <link rel="stylesheet" type="text/css" href="css/app.css">
+                <title>Firefox OS App - Brick Demo</title>
+              </head>
+
+              <body>
+                <!--- Some Brick widgets will go here -->
+
+                <script type="text/javascript" src="js/brick.min.js"></script>
+                <script type="text/javascript" src="js/app.js"></script>
+              </body>
+            </html>
+
+      section
+        code.language-markup
+          pre.
+            <!-- Use an x-deck to transition between views of content -->
+            <body>
+              <x-deck>
+                <x-card>
+                  <h1>View 1</h1>
+                  <p>This is view 1</p>
+                </x-card>
+                <x-card>
+                  <h1>View 2</h1>
+                  <p>This is view 2</p>
+                </x-card>
+              <x-deck>
+              <script type="text/javascript" src="js/brick.min.js"></script>
+              <script type="text/javascript" src="js/app.js"></script>
+            </body>
+
+      section
+        code.language-markup
+          pre.
+            <!-- Add above <x-deck> in <body> -->
+            <x-appbar id="bar">
+              <header>Simple Brick App</header>
+              <button id="view-prev">Previous View</button>
+              <button id="view-next">Next View</button>
+            </x-appbar>
+
+      section
+        code.language-javascript
+          pre.
+            document.addEventListener('DOMComponentsLoaded', function(){
+            // Run any code here that depends on Brick components being loaded first
+            // Very similar to jQuery's document.ready()
+
+            var deck = document.getElementById("deck");
+            var nextButton = document.getElementById("view-next");
+            var prevButton = document.getElementById("view-prev");
+
+            prevButton.addEventListener("click", function(){
+                deck.shufflePrev();
+            });
+            nextButton.addEventListener("click", function(){
+                deck.shuffleNext();
+            });
+          });
+
+      section
+        code.language-css
+          pre.
+            x-appbar {
+              padding: .1em 0;
+            }
+
+            x-deck {
+              min-height: 32em;
+            }
+
+            x-deck > x-card {
+              background: #eee;
+              color: #000;
+              padding: 1em;
+            }
+      section
+        h2 Let's See It In Action
+
+      section
+        h2 Step 2: Add some more interesting content...
+        h2 ... using some more Bricks!
+
+      section
+        code.language-markup
+          pre.
+            <x-card>
+              <h1>Pick a Date</h1>
+              <p>&lt;x-datepicker&gt;'s are a polyfill for &lt;input type="date"&gt;.
+              <x-datepicker></x-datepicker>
+            </x-card>
+
+      section
+        code.language-markup
+          pre.
+            <x-card>
+            <h1>A Random Cat, Because Why Not</h1>
+              <img src="http://lorempixel.com/300/300/cats">
+            </x-card>    
+
+      section
+        h2 Let's See It In Action
+
+      section
+        h2 What if we turn our random cat into a Brick?
+        h3 Let's make it so when we click on the cat, we get another random cat
+
+      section
+        h2 First we register our custom element with some JS
+        h3 This is so that the DOM (and our custom JS) know what to do with the custom tag
+
+      section
+        code.language-javascript
+          pre.
+            (function() {
+              xtag.register('your-brick', {
+                  lifecycle: {
+                      created: function() {
+                          this.innerHTML = 'I am a brick';
+                      }
+                  }
+              });
+          })();
+
+      section
+        code.language-javascript
+          pre.
+            (function() {
+            xtag.register('random-cat', {
+                lifecycle: {
+                    created: function() {
+                        this.innerHTML = "<img src='http:\/\/lorempixel.com/300/300/cats'>";
+                    }
+                },
+                events: {
+                    'click': function(e) {
+                        this.innerHTML = "<img src='#'>";
+                        this.innerHTML = "<img src='http:\/\/lorempixel.com/300/300/cats/#" + new Date().getTime() + "'>";
+                    }
+                }
+              });
+            })();
+
+      section
+        code.language-markup
+          pre.
+            <x-card>
+              <h1>A Random Cat, Because Why Not</h1>
+              <random-cat></random-cat>
+            </x-card> 
+            
+      section
+      h2 Let's see it in action!
+
+      section
+        h2 Beyond 'lifecycle'
+
+      section
+        code.language-javascript
+          pre.
+            xtag.register('x-accordion', {
+            // extend existing elements
+            extends: 'div',
+            lifecycle:{
+              created: function(){
+                // fired once at the time a component
+                // is initially created or parsed
+              },
+              inserted: function(){
+                // fired each time a component
+                // is inserted into the DOM
+              },
+              removed: function(){
+                // fired each time an element
+                // is removed from DOM
+              },
+              attributeChanged: function(){
+                // fired when attributes are set
+              }
+            }
+          });
+      section
+        h2 But wait, you can do more!
+
+      section
+        code.language-javascript
+          pre.
+              accessors: {
+                'togglers': {
+                  get: function(){
+                    // return all toggler children
+                  },
+                  set: function(value){
+                    // set the toggler children
+                  }
+                }
+              },
+              methods: {
+                nextToggler: function(){
+                  // activate the next toggler
+                },
+                previousToggler: function(){
+                  // activate the previous toggler
+                }
+              }
+
+      section
+        h2 Before I go: SOMETHING AWESOME
+
+      section.list
+        h2 Choice Resources
+        ul
+          li
+            a(href="https://dvcs.w3.org/hg/webcomponents/raw-file/ccd579693e46/explainer/index.html")
+              h3 Web Components Explainer
+          li
+            a(href="http://flathead.herokuapp.com/designer") 
+              h3 Mozilla AppMaker
+          li
+            a(href="http://www.x-tags.org/")
+              h3 Mozilla X-Tags
+          li
+            a(href="http://mozilla.github.io/brick/")
+              h3 Mozilla Brick
+          li
+            a(href="http://www.html5rocks.com/en/tutorials/webcomponents/customelements/") 
+              h3 HTML5 Rocks - Custom Elements
+
+      // End Slide
+
+      section.cover
+        img(src="img/finale.gif")
+        div.right
+          div.tint
+            h2 Thanks JSConf Colombia!
+            h2 love,
+            h2 Angelina Fabbro
+            h2 @angelinamagnum
+            h2 angelina@mozilla.com
+        
+    script(src='bower_components/bespoke.js/dist/bespoke.min.js')
+    script(src='bower_components/bespoke-bullets/dist/bespoke-bullets.min.js')
+    script(src='bower_components/bespoke-hash/dist/bespoke-hash.min.js')
+    script(src='bower_components/bespoke-state/dist/bespoke-state.min.js')
+    script(src='bower_components/prism/prism.js')
+    script(src='bower_components/prism/plugins/line-numbers/prism-line-numbers.min.js')
+    script(src='scripts/main.js')

@@ -1,0 +1,10 @@
+{
+  "name": "building-mobile-web-applications-with-brick-bespoke",
+  "version": "0.0.0",
+  "dependencies": {
+    "bespoke.js": "~0.3.0",
+    "bespoke-bullets": "~0.2.0",
+    "bespoke-hash": "~0.1.0",
+    "prism": "gh-pages"
+  }
+}
