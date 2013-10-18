@@ -1,0 +1,136 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Building Mobile Web Applications using Mozilla's Brick Library</title><link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Pathway+Gothic+One|Noto+Serif:400,400italic"><link rel="stylesheet" type="text/css" href="bower_components/prism/themes/prism-coy.css"><link rel="stylesheet" type="text/css" href="bower_components/prism/plugins/line-numbers/prism-line-numbers.css"><link rel="stylesheet" type="text/css" href="styles/main.css"></head><body><article><!-- Intro talk & self--><section class="cover"><img src="img/lego1.gif"><h1 class="tint">Building Mobile Web Applications With Brick</h1></section><section class="cover"><img src="img/vancouver-rain.gif"><div class="tint"><h2>I'm Angelina Fabbro</h2><h2>I'm from Vancouver, Canada</h2><h2>@angelinamagnum</h2><h2>follow for slides &amp; pandavangelism</h2></div></section><section class="cover"><img src="img/firefox.jpg"></section><!-- Intro web components - terminology & problems they solve--><section class="white"><h2>Web Components are the new HTML 5</h2><img src="img/webcomponents.png"></section><section class="white"><h2>Technologies:</h2><ul><li><h3>HTML Imports</h3></li><li><h3>Shadow DOM</h3></li><li><h3>HTML Templates</h3></li><li><h3>Custom Elements</h3></li></ul></section><section class="white"><h2>What is a component?</h2><img src="img/screws.jpg"></section><section><h2>Black Boxes</h2><img src="img/resistors.jpg"></section><section><img src="img/doorbell.jpg"></section><section><h2>Why build custom elements?</h2></section><section><h2>Benefits</h2><ul><li><h3>Encapsulation</h3></li><li><h3>Reusability</h3></li><li><h3>Robustness</h3></li><li><h3>Expressiveness</h3></li></ul></section><section class="white"><h2>What is Brick?</h2><ul><li> <h3>Custom elements built using X-Tags</h3></li><li><h3>Mobile app focus</h3></li></ul></section><section class="white"><h2>So... what is/are X-Tags?</h2><ul><li><h3>Enables creation of custom elements </h3></li><li> <h3>Does so in a way that is similar to web components as spec'd by the W3C</h3></li></ul></section><section><h2>How is Brick different from other web components frameworks?</h2><ul><li><h3>Brick is a small library that enables the creation of custom DOM Elements</h3></li><li><h3>It is not a framework - only select or create the components you need a la carte</h3></li></ul></section><section><h2>A Small Application with using Brick</h2><h3>http://github.com/afabbro/simple-brick-demo</h3></section><section><h2>Step 1: Add Some Bricks!</h2></section><section><code class="language-markup"><pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/brick-1.0beta5.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/app.css&quot;&gt;
+    &lt;title&gt;Firefox OS App - Brick Demo&lt;/title&gt;
+  &lt;/head&gt;
+  
+  &lt;body&gt;
+    &lt;!--- Some Brick widgets will go here --&gt;
+    
+    &lt;script type=&quot;text/javascript&quot; src=&quot;js/brick.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;js/app.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></code></section><section><code class="language-markup"><pre>&lt;!-- Use an x-deck to transition between views of content --&gt;
+&lt;body&gt;
+  &lt;x-deck&gt;
+    &lt;x-card&gt;
+      &lt;h1&gt;View 1&lt;/h1&gt;
+      &lt;p&gt;This is view 1&lt;/p&gt;
+    &lt;/x-card&gt;
+    &lt;x-card&gt;
+      &lt;h1&gt;View 2&lt;/h1&gt;
+      &lt;p&gt;This is view 2&lt;/p&gt;
+    &lt;/x-card&gt;
+  &lt;x-deck&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;js/brick.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;js/app.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+</pre></code></section><section><code class="language-markup"><pre>&lt;!-- Add above &lt;x-deck&gt; in &lt;body&gt; --&gt;
+&lt;x-appbar id=&quot;bar&quot;&gt;
+  &lt;header&gt;Simple Brick App&lt;/header&gt;
+  &lt;button id=&quot;view-prev&quot;&gt;Previous View&lt;/button&gt;
+  &lt;button id=&quot;view-next&quot;&gt;Next View&lt;/button&gt;
+&lt;/x-appbar&gt;
+</pre></code></section><section><code class="language-javascript"><pre>document.addEventListener('DOMComponentsLoaded', function(){
+// Run any code here that depends on Brick components being loaded first
+// Very similar to jQuery's document.ready()
+
+var deck = document.getElementById(&quot;deck&quot;);
+var nextButton = document.getElementById(&quot;view-next&quot;);
+var prevButton = document.getElementById(&quot;view-prev&quot;);
+
+prevButton.addEventListener(&quot;click&quot;, function(){
+    deck.shufflePrev();
+});
+nextButton.addEventListener(&quot;click&quot;, function(){
+    deck.shuffleNext();
+});</pre>});</code></section><section><code class="language-css"><pre>x-appbar {
+  padding: .1em 0;
+}
+
+x-deck {
+  min-height: 32em;
+}
+
+x-deck &gt; x-card {
+  background: #eee;
+  color: #000;
+  padding: 1em;
+}</pre></code></section><section><h2>Let's See It In Action</h2></section><section><h2>Step 2: Add some more interesting content...</h2><h2>... using some more Bricks!</h2></section><section><code class="language-markup"><pre>&lt;x-card&gt;
+  &lt;h1&gt;Pick a Date&lt;/h1&gt;
+  &lt;p&gt;&lt;x-datepicker&gt;'s are a polyfill for &lt;input type=&quot;date&quot;&gt;.
+  &lt;x-datepicker&gt;&lt;/x-datepicker&gt;
+&lt;/x-card&gt;
+</pre></code></section><section><code class="language-markup"><pre>&lt;x-card&gt;
+&lt;h1&gt;A Random Cat, Because Why Not&lt;/h1&gt;
+  &lt;img src=&quot;http://lorempixel.com/300/300/cats&quot;&gt;
+&lt;/x-card&gt;    
+</pre></code></section><section><h2>Let's See It In Action</h2></section><section><h2>What if we turn our random cat into a Brick?</h2><h3>Let's make it so when we click on the cat, we get another random cat</h3></section><section><h2>First we register our custom element with some JS</h2><h3>This is so that the DOM (and our custom JS) know what to do with the custom tag</h3></section><section><code class="language-javascript"><pre>(function() {
+  xtag.register('your-brick', {
+      lifecycle: {
+          created: function() {
+              this.innerHTML = 'I am a brick';
+          }
+      }
+  });</pre>})();</code></section><section><code class="language-javascript"><pre>(function() {
+xtag.register('random-cat', {
+    lifecycle: {
+        created: function() {
+            this.innerHTML = &quot;&lt;img src='http:\/\/lorempixel.com/300/300/cats'&gt;&quot;;
+        }
+    },
+    events: {
+        'click': function(e) {
+            this.innerHTML = &quot;&lt;img src='#'&gt;&quot;;
+            this.innerHTML = &quot;&lt;img src='http:\/\/lorempixel.com/300/300/cats/#&quot; + new Date().getTime() + &quot;'&gt;&quot;;
+        }
+    }
+});
+})();
+</pre></code></section><section><code class="language-markup"><pre>&lt;x-card&gt;
+  &lt;h1&gt;A Random Cat, Because Why Not&lt;/h1&gt;
+  &lt;random-cat&gt;&lt;/random-cat&gt;
+&lt;/x-card&gt; 
+</pre></code></section><section><h2>Let's see it in action!</h2></section><section><h2>Beyond 'lifecycle'</h2></section><section><code class="language-javascript"><pre>xtag.register('x-accordion', {
+// extend existing elements
+extends: 'div',
+lifecycle:{
+  created: function(){
+    // fired once at the time a component
+    // is initially created or parsed
+  },
+  inserted: function(){
+    // fired each time a component
+    // is inserted into the DOM
+  },
+  removed: function(){
+    // fired each time an element
+    // is removed from DOM
+  },
+  attributeChanged: function(){
+    // fired when attributes are set
+  }
+}</pre>});</code></section><section><h2>But wait, you can do more!</h2></section><section><code class="language-javascript"><pre>accessors: {
+  'togglers': {
+    get: function(){
+      // return all toggler children
+    },
+    set: function(value){
+      // set the toggler children
+    }
+  }
+},
+methods: {
+  nextToggler: function(){
+    // activate the next toggler
+  },
+  previousToggler: function(){
+    // activate the previous toggler
+  }
+}
+</pre></code></section><section><h2>Before I go: SOMETHING AWESOME</h2><h2>http://flathead.herokuapp.com/designer</h2></section><section class="list"><h2>Choice Resources</h2><ul><li><a href="https://dvcs.w3.org/hg/webcomponents/raw-file/ccd579693e46/explainer/index.html"><h3>Web Components Explainer</h3></a></li><li><a href="http://flathead.herokuapp.com/designer"> <h3>Mozilla AppMaker</h3></a></li><li><a href="http://www.x-tags.org/"><h3>Mozilla X-Tags</h3></a></li><li><a href="http://mozilla.github.io/brick/"><h3>Mozilla Brick</h3></a></li><li><a href="http://www.html5rocks.com/en/tutorials/webcomponents/customelements/"> <h3>HTML5 Rocks - Custom Elements</h3></a></li></ul></section><!-- End Slide--><section class="cover"><img src="img/finale.gif"><div class="right"><div class="tint"><h2>Thanks JSConf Colombia!</h2><h2>love,</h2><h2>Angelina Fabbro</h2><h2>@angelinamagnum</h2><h2>angelina@mozilla.com</h2></div></div></section></article><script src="bower_components/bespoke.js/dist/bespoke.min.js"></script><script src="bower_components/bespoke-bullets/dist/bespoke-bullets.min.js"></script><script src="bower_components/bespoke-hash/dist/bespoke-hash.min.js"></script><script src="bower_components/bespoke-state/dist/bespoke-state.min.js"></script><script src="bower_components/prism/prism.js"></script><script src="bower_components/prism/plugins/line-numbers/prism-line-numbers.min.js"></script><script src="scripts/main.js"></script></body></html>

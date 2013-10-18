@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" type="text/css" href="css/brick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <title>Firefox OS App - Brick Demo</title>
+</head>
+
+<body>
+	<x-appbar id="bar">
+    	<header>Simple Brick App</header>
+        <button id="view-prev">Prev</button>
+    	<button id="view-next">Next</button>
+	</x-appbar>
+    <x-deck id="deck">
+      <x-card>
+        <h1>View 1 (Index 0)</h1>
+        <p>This is view 1</p>
+      </x-card>
+      <x-card>
+        <h1>View 2 (Index 1)</h1>
+        <p>This is view 2</p>
+      </x-card>
+      <x-card>
+        <h1>View 3 (Index 2)</h1>
+        <p>This is view 3</p>
+      </x-card>
+    </x-deck>
+
+	<script type="text/javascript" src="js/brick.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
