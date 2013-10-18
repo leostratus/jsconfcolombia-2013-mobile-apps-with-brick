@@ -1,6 +1,11 @@
-# Return of Inspector Web
+# Building Mobile Web Apps w/Mozilla's Brick Components
 
-A little over a year later, I return to the topic of Web Components to see what has changed and where we with this technology.
+As the title says, foo! 
+
+Slides: http://afabbro.github.io/jsconfcolombia-2013-mobile-apps-with-brick/
+Demo: 
+
+Special thanks to Soledad who's post [here](http://soledadpenades.com/2013/09/30/building-web-apps-one-brick-at-a-time/) gave me the fuel for the first few slides in the deck.
 
 
 > A [Bespoke.js](http://markdalgleish.com/projects/bespoke.js) presentation, built with [generator-bespoke](https://github.com/markdalgleish/generator-bespoke)
@@ -19,3 +24,6 @@ Then, install dependencies and run the preview server:
 $ npm install && bower install
 $ grunt server
 ```
+# License
+
+MIT.
