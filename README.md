@@ -3,7 +3,7 @@
 As the title says, foo! 
 
 Slides: http://afabbro.github.io/jsconfcolombia-2013-mobile-apps-with-brick/
-Demo: 
+Demo: https://github.com/afabbro/simple-brick-demo
 
 Special thanks to Soledad who's post [here](http://soledadpenades.com/2013/09/30/building-web-apps-one-brick-at-a-time/) gave me the fuel for the first few slides in the deck.
 
